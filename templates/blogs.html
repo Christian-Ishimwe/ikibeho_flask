@@ -1,0 +1,11 @@
+{%extends "base.html"%}
+{%block content%}
+<h2>Blogs</h2>
+<p>Welcome To blogs Management</p>
+<a class="btn btn-primary" href="/blogs/add">Add Blog</a>
+<div class="container mx-auto mt-10">
+        <div id="cardsContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+</div>
+
+<script src="../static/scripts/blogs.js"></script>
+{%endblock%}

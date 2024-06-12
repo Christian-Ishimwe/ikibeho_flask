@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="w-100 mx-auto bg-white p-8 rounded-lg shadow-md">
+    <h2 class="text-2xl font-bold mb-6">Update Post</h2>
+    <form enctype="multipart/form-data" class="space-y-6" id="postForm">
+        <div>
+            <label for="title" class="block text-sm font-medium text-gray-700">Title</label>
+            <input type="text" id="title" name="title" required
+                class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+        </div>
+        <div>
+            <label for="content" class="block text-sm font-medium text-gray-700">Content</label>
+            <textarea id="content" name="content" rows="10" required
+                class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"></textarea>
+        </div>
+        <div>
+            <button type="submit" id="editBtn"
+                class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                Update
+            </button>
+        </div>
+    </form>
+</div>
+
+<script src="https://cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
+<script>
+    CKEDITOR.replace('content');
+
+    async function fetchBlog(blogId) {
+        try {
+            const response = await fetch(`http://localhost:5000/api/blogs/${blogId}`);
+            if (!response.ok) {
+                throw new Error("Network Error");
+            } else {
+                const data = await response.json();
+                return data;
+            }
+        } catch (error) {
+            console.error("There was a problem with the fetch operation:", error);
+        }
+    }
+
+    async function initialize() {
+        const blog_id =window.location.href.split("?")[1]
+        if (blog_id) {
+            const blog = await fetchBlog(blog_id);
+            if (blog) {
+                document.getElementById('title').value = blog.title;
+                CKEDITOR.instances['content'].setData(blog.content);
+            }
+        } else {
+            console.error("No blog ID found in URL");
+        }
+        const form= document.querySelector("form")
+        form.addEventListener("submit", async (e)=>{
+            e.preventDefault()
+            const title= document.getElementById("title").value.trim()
+            const content=document.getElementById("content").value
+            const editBtn= document.getElementById("editBtn")
+            editBtn.innerText="updating..."
+            editBtn.disable=true
+
+            await formSubmit(blog_id,title, content)
+            
+        })
+    }
+
+    async function formSubmit(blog_id,title,content){
+        const token=JSON.parse(localStorage.getItem("user")).token
+        fetch(`http://localhost:5000/api/blogs/${blog_id}`, {
+            headers: {
+                'Content-Type': "application/json",
+                "Authorization": `Bearer ${token}`
+            },
+            method: "put",
+            body: JSON.stringify({title, content})
+        }).then(response=>{
+            if(!response.ok){
+                throw new Error("Network error")
+            }
+            return response.json()
+        }).then(data=>{
+            alert("Blog updated!")
+            window.location.href="/blogs    "
+        }).catch(err=>{
+            console.log(err)
+        })
+    }
+    window.addEventListener("DOMContentLoaded", async () => {
+        await initialize();
+    });
+</script>
+
+{% endblock %}

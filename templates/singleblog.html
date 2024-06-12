@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Blog</title>
+    <link
+    href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css"
+    rel="stylesheet"
+/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+    <button onclick="history.back()"  class="px-4 py-2 m-3 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-700">
+            <i class="ri-arrow-left-line"></i>
+        </button>
+    <div class="container mx-auto mt-10 px-4">
+        <div id="blogContainer" class="bg-white p-8 rounded-lg shadow-md"></div>
+    </div>
+
+    <script>
+        // Function to fetch a single blog by ID
+        async function fetchBlog(blogId) {
+            try {
+                const response = await fetch(`http://localhost:5000/api/blogs/${blogId}`);
+                if (!response.ok) {
+                    throw new Error("Network Error");
+                } else {
+                    const data = await response.json();
+                    return data;
+                }
+            } catch (error) {
+                console.error("There was a problem with the fetch operation:", error);
+            }
+        }
+
+        // Function to render the blog details
+        function renderBlog(blog) {
+            const blogContainer = document.getElementById('blogContainer');
+            blogContainer.innerHTML = ''; // Clear any existing content
+
+            const blogElement = document.createElement('div');
+
+            blogElement.innerHTML = `
+                <h1 class="text-3xl font-bold mb-4">${blog.title}</h1>
+                <img src="${blog.imageUrls[0]}" alt="Blog Image" class="w-full h-64 object-cover rounded-lg mb-4">
+                <p class="text-gray-600 mb-4">${new Date(blog.createdAt).toLocaleDateString()}</p>
+                <div class="prose max-w-full mb-4">${blog.content}</div>
+                <h2 class="text-2xl font-bold mt-6 mb-4">Additional Images</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                    ${blog.imageUrls.map((url, index) => {
+                        if (index > 0) {
+                            return `<img src="${url}" alt="Additional Image" class="w-full h-48 object-cover rounded-lg">`;
+                        }
+                    }).join('')}
+                </div>
+            `;
+
+            blogContainer.appendChild(blogElement);
+        }
+
+        // Function to initialize the page and load the blog data
+        async function initialize() {
+            const blogId = window.location.href.split("?")[1];
+            console.log(blogId)
+            if (blogId) {
+                const blog = await fetchBlog(blogId);
+                renderBlog(blog);
+            } else {
+                console.error("No blog ID provided in the URL");
+            }
+        }
+
+        initialize();
+    </script>
+</body>
+</html>

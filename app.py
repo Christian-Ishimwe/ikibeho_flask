@@ -20,6 +20,31 @@ def users():
         return redirect(url_for("login"))
     return render_template("users.html", title="Users")
 
+@app.get("/blogs")
+def blogs():
+    if "user" not in session:
+        return redirect(url_for("login"))
+    return render_template("blogs.html", title="Blogs")
+
+@app.get("/blogs/add")
+def addBlogs():
+    if "user" not in session:
+        return redirect(url_for("login"))
+    return render_template("addblog.html", title="Add Blog")
+
+@app.get("/blogs/blog_id")
+def singleBlog():
+    if "user" not in session:
+        return redirect(url_for("login"))
+    return render_template("singleblog.html", title="Blog")
+
+
+@app.get("/blogs/edit_id")
+def editblog():
+    if "user" not in session:
+        return redirect(url_for("login"))
+    return render_template("editblog.html", title="Edit")
+
 
 @app.route("/logout")
 def logout():
