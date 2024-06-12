@@ -14,6 +14,12 @@ def home():
         return redirect(url_for("login"))
     return render_template("home.html", title="Home")
 
+@app.get("/users")
+def users():
+    if "user" not in session:
+        return redirect(url_for("login"))
+    return render_template("users.html", title="Users")
+
 
 @app.route("/logout")
 def logout():

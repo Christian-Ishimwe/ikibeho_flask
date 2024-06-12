@@ -20,13 +20,13 @@ function handleLogin(){
             errDiv.innerText = "Invalid email or password";
         }
         return response.json()
-    }).then(data=>{
+    }).then(async (data)=>{
         const token = data.token
         const role= data.role
         const id=  data.id
         const current_user= {token, role,id}
         localStorage.setItem("user", JSON.stringify(current_user))
-        fetch("/login/sessions",{
+        await fetch("/login/sessions",{
             headers:{
                 "Content-Type": "application/json"
             },
