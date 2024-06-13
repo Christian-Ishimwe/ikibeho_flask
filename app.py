@@ -46,6 +46,14 @@ def editblog():
     return render_template("editblog.html", title="Edit")
 
 
+
+@app.get("/contacts")
+def contacts():
+    if "user" not in session:
+        return redirect(url_for("login"))
+    return render_template("contacts.html", title="contacts")
+
+
 @app.route("/logout")
 def logout():
     if "user" not in session:

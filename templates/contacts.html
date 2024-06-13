@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+{% block content %}
+<!-- <h2>Contacts</h2> -->
+
+<div class="container mx-auto mt-10 ">
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-2">
+    <!-- Overview Section -->
+    <div class="col-span-1 lg:col-span-3">
+      <div class="bg-white shadow-md rounded-lg p-6 border border-dark-blue">
+        <h2 class="text-2xl font-bold mb-4">Contacts Overview</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="bg-gray-800 text-white p-4 rounded-lg">
+            <h3 class="text-lg font-semibold">Total Messages</h3>
+            <p class="text-2xl" id="totalMessages">0</p>
+          </div>
+          <div class="bg-gray-800 text-white p-4 rounded-lg">
+            <h3 class="text-lg font-semibold">Unread Messages</h3>
+            <p class="text-2xl" id="unreadMessages">0</p>
+          </div>
+          <div class="bg-gray-800 text-white p-4 rounded-lg">
+            <h3 class="text-lg font-semibold">Recent Messages</h3>
+            <p class="text-2xl" id="recentMessages">0</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Messages List Section -->
+    <div class="col-span-1 lg:col-span-2">
+      <div class="bg-white shadow-md rounded-lg p-6 border border-dark-blue">
+        <h2 class="text-2xl font-bold mb-4">Messages List</h2>
+        <input type="text" id="search" placeholder="Search..." class="mb-4 p-2 border rounded w-full">
+        <div class="overflow-auto max-h-80">
+          <table class="min-w-full divide-y divide-gray-200">
+            <thead class="bg-gray-800 text-white">
+              <tr>
+                <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Name</th>
+                <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Email</th>
+                <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Date</th>
+                <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Status</th>
+              </tr>
+            </thead>
+            <tbody id="messageList" class="bg-white divide-y divide-gray-200">
+              <!-- Dynamic message rows will be inserted here -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+<!-- Reply Form -->
+<div id="replyForm" class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full" style="display:none;">
+  <div class="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
+    <div>
+      <textarea id="replyText" class="border p-2 w-full" rows="5" placeholder="Write your reply..."></textarea>
+    </div>
+    <div class="mt-4 flex justify-end">
+      <button id="sendReplyButton" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Send Reply</button>
+      <div id="replyLoading" class="ml-4 hidden animate-spin">
+        <svg class="h-5 w-5 text-blue-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M10 0c5.523 0 10 4.477 10 10s-4.477 10-10 10S0 15.523 0 10 4.477 0 10 0zm0 2a8 8 0 100 16 8 8 0 000-16zM8.293 8.293a1 1 0 00-1.414 1.414 4.001 4.001 0 005.656 5.656 1 1 0 101.414-1.414 2 2 0 11-2.828-2.828 1 1 0 00-1.414 0zM10 4a1 1 0 110 2 4 4 0 110 8 1 1 0 110-2 2 2 0 100-4 1 1 0 110-2z" clip-rule="evenodd" />
+        </svg>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+    <!-- Message Details Section -->
+    <div class="col-span-1">
+      <div class="bg-white shadow-md rounded-lg p-6 border border-dark-blue">
+        <h2 class="text-2xl font-bold mb-4">Message Details</h2>
+        <p id="detailsName" class="mb-2"><strong>Name:</strong> -</p>
+        <p id="detailsEmail" class="mb-2"><strong>Email:</strong> -</p>
+        <p id="detailsDate" class="mb-2"><strong>Date:</strong> -</p>
+        <p id="detailsMessage" class="mb-4"><strong>Message:</strong> -</p>
+        <div class="flex space-x-4">
+          <button class="bg-gray-800 text-white py-2 px-4 rounded hover:bg-blue-700" id="replyButton"><i class="ri-reply-line"></i></button>
+          <button class="bg-gray-200 text-dark-blue py-2 px-4 rounded hover:bg-gray-300" id="markAsReadButton"><i class="ri-message-3-line"></i></button>
+          <button class="bg-red-500 text-white py-2 px-4 rounded hover:bg-red-700" id="deleteButton"><i class="ri-delete-bin-line"></i></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="../static/scripts/contacts.js"></script>
+{% endblock %}
