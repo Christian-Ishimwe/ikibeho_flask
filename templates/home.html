@@ -1,5 +1,73 @@
 {% extends "base.html" %}
+
 {% block content %}
-<h2>Home Page</h2>
-<p>Welcome to the home page!</p>
+<div class="container mx-auto p-4">
+  <div class="text-center mb-6">
+    <!-- <img src="logo.png" alt="Organization Logo" class="h-12"> -->
+    <h1 class="text-3xl font-bold">Ikibeho Digital Foundation Dashboard</h1>
+    <h1 class="text-2xl font-semibold mt-2">Welcome, <strong id="username"></strong></h1>
+  </div>
+
+  <!-- Statistics Section -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+    <!-- Admins Card -->
+    <div class="bg-gray-800 text-white p-6 rounded-lg shadow-lg">
+      <div class="flex items-center justify-between mb-4">
+        <div class="flex items-center">
+          <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
+          <h2 class="text-xl font-semibold">Admins</h2>
+        </div>
+        <p class="text-3xl font-bold">0</p>
+      </div>
+      <p class="text-sm text-gray-500">Total Admins</p>
+    </div>
+
+    <!-- Blogs Card -->
+    <div class="bg-gray-800 text-white p-6 rounded-lg shadow-lg">
+      <div class="flex items-center justify-between mb-4">
+        <div class="flex items-center">
+          <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+          <h2 class="text-xl font-semibold">Blogs</h2>
+        </div>
+        <p class="text-3xl font-bold" id="blogsLength">0</p>
+      </div>
+      <p class="text-sm text-gray-500">Total Blogs</p>
+    </div>
+
+    <!-- Donations Card -->
+    <div class="bg-gray-800 text-white p-6 rounded-lg shadow-lg">
+      <div class="flex items-center justify-between mb-4">
+        <div class="flex items-center">
+          <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20a2 2 0 01-2 2H9a2 2 0 01-2-2V10a2 2 0 012-2h6a2 2 0 012 2v10z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+          <h2 class="text-xl font-semibold">Donations</h2>
+        </div>
+        <p class="text-3xl font-bold" id="donationLength">0</p>
+      </div>
+      <p class="text-sm text-gray-500">Total Donations</p>
+    </div>
+
+    <!-- Contacts Card -->
+    <div class="bg-gray-800 text-white p-6 rounded-lg shadow-lg">
+      <div class="flex items-center justify-between mb-4">
+        <div class="flex items-center">
+          <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V2m0 4a4 4 0 100 8m0 0v4m0-4h4m-4 0H8m0-4a4 4 0 100 8m0 0V6m0 4h4m-4 0H8m8 8v4m0-4a4 4 0 100 8m0 0h4m-4 0h-4m0-4v-4m0 4a4 4 0 100-8m0 0H6m4 0h4m-4 0a4 4 0 100-8m0 0V6m0 4h4"></path></svg>
+          <h2 class="text-xl font-semibold">Contacts</h2>
+        </div>
+        <p class="text-3xl font-bold" id="contactsLength">0</p>
+      </div>
+      <p class="text-sm text-gray-500">Total Contacts</p>
+    </div>
+  </div>
+</div>
+
+  <!-- Chart -->
+  <div class="bg-white p-6 rounded-lg shadow-lg mt-6">
+    <canvas id="myChart" width="400" height="200"></canvas>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="../static/scripts/index.js"></script>
+
+
 {% endblock %}

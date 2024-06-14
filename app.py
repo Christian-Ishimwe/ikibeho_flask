@@ -59,7 +59,11 @@ def donations():
         return redirect(url_for("login"))
     return render_template("donations.html", title="Donations ")
 
-
+@app.get("/profile")
+def profile():
+    if "user" not in session:
+        return redirect(url_for("login"))
+    return render_template("profile.html", title="Profile ")
 
 @app.route("/logout")
 def logout():
