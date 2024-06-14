@@ -53,6 +53,13 @@ def contacts():
         return redirect(url_for("login"))
     return render_template("contacts.html", title="contacts")
 
+@app.get("/donations")
+def donations():
+    if "user" not in session:
+        return redirect(url_for("login"))
+    return render_template("donations.html", title="Donations ")
+
+
 
 @app.route("/logout")
 def logout():
