@@ -16,7 +16,7 @@ document.getElementById('postForm').addEventListener('submit', async function(ev
     submitButton.innerText = 'Submitting...';
 
     try {
-        const response = await fetch('http://localhost:5000/api/blogs/add', {
+        const response = await fetch('https://api.ikibehofoundation.org.rw/api/blogs/add', {
             method: 'POST',
             body: formData,
             headers: {

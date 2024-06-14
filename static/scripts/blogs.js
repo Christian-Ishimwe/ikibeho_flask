@@ -4,7 +4,7 @@ window.addEventListener("DOMContentLoaded", async ()=>{
 
 async function fetchBlogs() {
     try {
-        const response = await fetch("http://localhost:5000/api/blogs");
+        const response = await fetch("https://api.ikibehofoundation.org.rw/api/blogs");
         if (!response.ok) {
             throw new Error("Network Error");
         } else {
@@ -63,7 +63,7 @@ function deleteBlog(blogId) {
     const permission= window.confirm("Are you sure you need to delete this blog?")
         if (permission){
             try{
-                fetch(`http://localhost:5000/api/blogs/${blogId}`, {
+                fetch(`https://api.ikibehofoundation.org.rw/api/blogs/${blogId}`, {
                     method: "delete",
                     headers: {
                         "Authorization": `Bearer ${token}`

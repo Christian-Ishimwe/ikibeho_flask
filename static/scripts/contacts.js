@@ -2,7 +2,7 @@
 
   async function fetchMessages() {
     try {
-      const response = await fetch('http://localhost:5000/api/contacts/all', {
+      const response = await fetch('https://api.ikibehofoundation.org.rw/api/contacts/all', {
         headers: {
           "Authorization": token
         }
@@ -57,7 +57,7 @@ function showMessageDetails(messages, index) {
   document.getElementById('replyButton').onclick = () => showReplyForm(msg._id);
   document.getElementById('markAsReadButton').onclick = async () => {
     try {
-      const response = await fetch(`http://localhost:5000/api/contacts/all/${msg._id}`, {
+      const response = await fetch(`https://api.ikibehofoundation.org.rw/api/contacts/all/${msg._id}`, {
         method: 'GET',
         headers: {
             'Authorization': `Bearer ${token}`,
@@ -77,7 +77,7 @@ function showMessageDetails(messages, index) {
   document.getElementById('deleteButton').onclick = async () => {
     if (confirm('Are you sure you want to delete this message?')) {
       try {
-        const response = await fetch(`http://localhost:5000/api/contacts/all/${msg._id}`, {
+        const response = await fetch(`https://api.ikibehofoundation.org.rw/api/contacts/all/${msg._id}`, {
           method: 'DELETE',
           headers: {
             'Authorization': `Bearer ${token}`,
@@ -103,7 +103,7 @@ function showReplyForm(messageId) {
     const replyText = document.getElementById('replyText').value;
     if (replyText) {
       try {
-        const response = await fetch(`http://localhost:5000/api/contacts/reply/${messageId}`, {
+        const response = await fetch(`https://api.ikibehofoundation.org.rw/api/contacts/reply/${messageId}`, {
           method: 'PUT',
           headers: {
             'Authorization': `Bearer ${token}`,

@@ -48,7 +48,7 @@
 const token= JSON.parse(localStorage.getItem("user")).token
 async function getBlogs() {
     try {
-        const response = await fetch("http://localhost:5000/api/blogs");
+        const response = await fetch("https://api.ikibehofoundation.org.rw/api/blogs");
         if (!response.ok) {
             throw new Error("There was an error fetching data!");
         }
@@ -64,7 +64,7 @@ async function getBlogs() {
 
 async function getDonations() {
     try {
-        const response = await fetch("http://localhost:5000/api/donations/all", {
+        const response = await fetch("https://api.ikibehofoundation.org.rw/api/donations/all", {
             headers:{
                 "Authorization": `Bearer ${token}`
             }
@@ -85,7 +85,7 @@ async function getDonations() {
 
 async function getContacts() {
     try {
-        const response = await fetch("http://localhost:5000/api/contacts/all", {
+        const response = await fetch("https://api.ikibehofoundation.org.rw/api/contacts/all", {
             headers:{
                 "Authorization": `Bearer ${token}`
             }

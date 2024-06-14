@@ -28,7 +28,7 @@
 
     async function fetchBlog(blogId) {
         try {
-            const response = await fetch(`http://localhost:5000/api/blogs/${blogId}`);
+            const response = await fetch(`https://api.ikibehofoundation.org.rw/api/blogs/${blogId}`);
             if (!response.ok) {
                 throw new Error("Network Error");
             } else {
@@ -67,7 +67,7 @@
 
     async function formSubmit(blog_id,title,content){
         const token=JSON.parse(localStorage.getItem("user")).token
-        fetch(`http://localhost:5000/api/blogs/${blog_id}`, {
+        fetch(`https://api.ikibehofoundation.org.rw/api/blogs/${blog_id}`, {
             headers: {
                 'Content-Type': "application/json",
                 "Authorization": `Bearer ${token}`

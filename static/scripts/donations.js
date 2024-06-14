@@ -2,7 +2,7 @@
 
   async function fetchDonations() {
     try {
-      const response = await fetch('http://localhost:5000/api/donations/all', {
+      const response = await fetch('https://api.ikibehofoundation.org.rw/api/donations/all', {
         headers: {
           "Authorization": `Bearer ${token}`
         }
@@ -84,7 +84,7 @@
 
   async function viewDonation(id) {
     try {
-      const response = await fetch(`http://localhost:5000/api/donations/${id}`, {
+      const response = await fetch(`https://api.ikibehofoundation.org.rw/api/donations/${id}`, {
         headers: {
           "Authorization": `Bearer ${token}`
         }
@@ -127,7 +127,7 @@
 
   async function fetchDonationDetails(id) {
     try {
-      const response = await fetch(`http://localhost:5000/api/donations/${id}`, {
+      const response = await fetch(`https://api.ikibehofoundation.org.rw/api/donations/${id}`, {
         headers: {
           "Authorization": `Bearer ${token}`
         }
@@ -166,7 +166,7 @@
     }
 
     try {
-      await fetch(`http://localhost:5000/api/donations/${id}`, {
+      await fetch(`https://api.ikibehofoundation.org.rw/api/donations/${id}`, {
         method: 'PUT',
         headers: {
         'Authorization': `Bearer ${token}`,
@@ -184,7 +184,7 @@
 
   async function deleteDonation(id) {
     try {
-      const response = await fetch(`http://localhost:5000/api/donations/${id}`, {
+      const response = await fetch(`https://api.ikibehofoundation.org.rw/api/donations/${id}`, {
         method: 'DELETE',
         headers: {
           "Authorization": `Bearer ${token}`

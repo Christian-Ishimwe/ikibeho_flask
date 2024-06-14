@@ -3,7 +3,7 @@ const token=JSON.parse(localStorage.getItem("user")).token
 const getProfile = async () => {
 
     try {
-      const response = await fetch('http://localhost:5000/api/user/profile', {
+      const response = await fetch('https://api.ikibehofoundation.org.rw/api/user/profile', {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -28,7 +28,7 @@ getProfile()
 
 async function updatePhone() {
     const phone = document.getElementById('phone').value;
-    const response = await fetch('http://localhost:5000/api/user/update-phone', {
+    const response = await fetch('https://api.ikibehofoundation.org.rw/api/user/update-phone', {
       method: 'put',
       headers: {
         'Authorization': `Bearer ${token}`,
@@ -57,7 +57,7 @@ async function changePassword() {
     }
 
 
-    const response = await fetch('http://localhost:5000/api/user/changepassword', {
+    const response = await fetch('https://api.ikibehofoundation.org.rw/api/user/changepassword', {
       method: 'put',
       headers: {
         'Authorization': `Bearer ${token}`,

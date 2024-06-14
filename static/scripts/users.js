@@ -4,7 +4,7 @@ window.addEventListener("DOMContentLoaded", async () => {
     renderUsers(users);
 
     async function fetchUsers() {
-        const response = await fetch("http://localhost:5000/api/user/all", {
+        const response = await fetch("https://api.ikibehofoundation.org.rw/api/user/all", {
             method: "get",
             headers: {
                 Authorization: `Bearer ${token}`
@@ -158,7 +158,7 @@ window.addEventListener("DOMContentLoaded", async () => {
 
         try {
             const token = JSON.parse(localStorage.getItem("user")).token;
-            const response = await fetch('http://localhost:5000/api/user/register', {
+            const response = await fetch('https://api.ikibehofoundation.org.rw/api/user/register', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -188,7 +188,7 @@ window.addEventListener("DOMContentLoaded", async () => {
 async function deleteUser(userId) {
     try {
         const token = JSON.parse(localStorage.getItem("user")).token;
-        const response = await fetch(`http://localhost:5000/api/user/${userId}`, {
+        const response = await fetch(`https://api.ikibehofoundation.org.rw/api/user/${userId}`, {
             method: 'DELETE',
             headers: {
                 'Authorization': `Bearer ${token}`
@@ -213,7 +213,7 @@ async function toggleUserStatus(userId, currentStatus) {
         const token = JSON.parse(localStorage.getItem("user")).token;
         let response=""
         if(currentStatus){
-            response = await fetch(`http://localhost:5000/api/user/diactivate/${userId}`, {
+            response = await fetch(`https://api.ikibehofoundation.org.rw/api/user/diactivate/${userId}`, {
             method: 'PUT',
             headers: {
                 'Authorization': `Bearer ${token}`,
@@ -222,7 +222,7 @@ async function toggleUserStatus(userId, currentStatus) {
             body: JSON.stringify({ active: !currentStatus })
         });
         }else{
-             response = await fetch(`http://localhost:5000/api/user/activate/${userId}`, {
+             response = await fetch(`https://api.ikibehofoundation.org.rw/api/user/activate/${userId}`, {
             method: 'PUT',
             headers: {
                 'Authorization': `Bearer ${token}`,
@@ -243,7 +243,7 @@ async function toggleUserStatus(userId, currentStatus) {
 
 async function fetchUsers() {
     const token = JSON.parse(localStorage.getItem("user")).token;
-    const response = await fetch("http://localhost:5000/api/user/all", {
+    const response = await fetch("https://api.ikibehofoundation.org.rw/api/user/all", {
         method: "get",
         headers: {
             Authorization: `Bearer ${token}`
